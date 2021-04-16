@@ -58,10 +58,6 @@ function dealOneCard() {
 let playerCards = deal()
 alert("Your cards are:\n\n" + playerCards[0].Value + playerCards[0].Suit + "\nand\n" + playerCards[1].Value + playerCards[1].Suit)
 
-//playerCards[0].Value = "A"
-//playerCards[1].Value = "10"
-
-
 //check if black Jack meaning A + (10 || J || Q || k) 
 if (((playerCards[0].Value == "A") || (playerCards[1].Value) == "A") && 
     ((playerCards[0].Value == "10") || (playerCards[1].Value == "10") || 
@@ -79,11 +75,16 @@ if (((playerCards[0].Value == "A") || (playerCards[1].Value) == "A") &&
         if ((hitStand === "A") || (hitStand === "hold")) {
             location.reload()
         } else {
-            score += dealOneCard().Worth
+            let newCardWorth = dealOneCard()
+            score += newCardWorth.Worth
             if (((playerCards[0].Value == "A") || (playerCards[1].Value == "A")) && score > 21)  {
                 score -= 10
             }
-            alert("Your new card is: " + playerCards[0].Value + playerCards[0].Suit)
+            alert("Your new card is: " + newCardWorth.Value + newCardWorth.Suit)
+            if (score === 21) {
+                alert("Your score is: " + score + " you won!")
+                location.reload()
+            }
         }
     }
     alert("Busted!")
