@@ -77,7 +77,7 @@ if (((playerCards[0].Value == "A") || (playerCards[1].Value) == "A") &&
         } else {
             let newCardWorth = dealOneCard()
             score += newCardWorth.Worth
-            if (((playerCards[0].Value == "A") || (playerCards[1].Value == "A")) && score > 21)  {
+            if (((playerCards[0].Value == "A") || (playerCards[1].Value == "A") || (newCardWorth.Value == "A")) && score > 21)  {
                 score -= 10
             }
             alert("Your new card is: " + newCardWorth.Value + newCardWorth.Suit)
