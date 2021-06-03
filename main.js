@@ -70,6 +70,8 @@ if (((playerCards[0].Value == "A") || (playerCards[1].Value) == "A") &&
     console.log("no BlackJack")
     let score = playerCards[0].Worth + playerCards[1].Worth
     
+    let AceBurned = false
+
     while (score < 21) {
         let hitStand = prompt("Your score is: " + score + "\nWhat would you like to do?\n\nA) hold\nB) hit")
         if ((hitStand === "A") || (hitStand === "hold")) {
@@ -77,6 +79,12 @@ if (((playerCards[0].Value == "A") || (playerCards[1].Value) == "A") &&
         } else {
             let newCardWorth = dealOneCard()
             score += newCardWorth.Worth
+            
+            if (((playerCards[0].Value == "A") || (playerCards[1].Value == "A")) && score > 21 && AceBurned == false) {
+                score -= 10
+                AceBurned = true
+            }
+            
             if ((newCardWorth.Value == "A") && score > 21)  {
                 score -= 10
             }
